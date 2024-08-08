@@ -1,32 +1,21 @@
 package com.redlimerl.sleepbackground.config;
 
-import com.google.gson.JsonObject;
 import org.jetbrains.annotations.Nullable;
+import org.mcsr.speedrunapi.config.api.annotations.Config;
 
+@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 public class FrameLimitConfigValue extends ConfigValue {
 
+    @Config.Name("sleepbackground.config.fpsLimit")
+    @Config.Numbers.Whole.Bounds(min = 1, max = 60, enforce = Config.Numbers.EnforceBounds.MIN_ONLY)
     private int frameLimit;
 
-    public FrameLimitConfigValue(String keyName, int defaultLimit, String comment) {
-        super(keyName, comment);
-        this.frameLimit = defaultLimit;
-    }
-
-    @Override
-    public void loadToInit(JsonObject configObject) {
-        if (configObject.has("fps_limit")) {
-            this.frameLimit = configObject.get("fps_limit").getAsInt();
-            if (this.frameLimit < 1) throw new IllegalArgumentException("The FPS limit should always be 1 or over");
-        }
-    }
-
-    @Override
-    public void writeToJson(JsonObject configObject) {
-        configObject.addProperty("fps_limit", this.frameLimit);
+    public FrameLimitConfigValue(int defaultFrameLimit) {
+        this.frameLimit = defaultFrameLimit;
     }
 
     @Nullable
     public Integer getFrameLimit() {
-        return this.isEnable() ? frameLimit : null;
+        return this.isEnabled() ? this.frameLimit : null;
     }
 }

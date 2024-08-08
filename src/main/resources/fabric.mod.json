@@ -3,22 +3,28 @@
   "id": "sleepbackground",
   "version": "${version}",
   "name": "SleepBackground",
-  "description": "My instances are looks want to sleep",
+  "description": "Puts the instance to sleep by reducing framerate when Minecraft is running in the background.",
   "authors": [
-    "RedLime"
+    {
+      "name": "RedLime",
+      "contact": {
+        "homepage": "https://github.com/RedLime/"
+      }
+    }
   ],
   "license": "MIT",
   "environment": "client",
-  "entrypoints": {
-    "client": [
-      "com.redlimerl.sleepbackground.SleepBackground"
-    ]
+  "custom": {
+    "speedrunapi": {
+      "config": "com.redlimerl.sleepbackground.SleepBackgroundConfig"
+    }
   },
   "mixins": [
     "sleepbackground.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=1.16 <1.18.2"
+    "minecraft": "1.16.1",
+    "speedrunapi": "*"
   },
   "breaks": {
     "dynamicmenufps": "*"
