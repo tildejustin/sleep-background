@@ -18,7 +18,7 @@ dependencies {
 
     // SpeedrunAPI
     // check for the latest versions at https://jitpack.io/#kingcontaria/speedrunapi
-    modImplementation "com.github.KingContaria:SpeedrunAPI:b25af3eafb"
+    modImplementation "dev.tildejustin:speedrunapi:01eba12"
 }
 
 processResources {
@@ -50,7 +50,7 @@ jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
     }
-    project.version = project.version + "+1.16.1";
+    project.version = project.version + "+20w14infinite";
 }
 
 // configure the maven publication
