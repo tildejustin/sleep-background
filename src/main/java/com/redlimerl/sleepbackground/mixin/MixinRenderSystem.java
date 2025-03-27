@@ -12,11 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(RenderSystem.class)
 public class MixinRenderSystem {
 
-    @Inject(method = "enableCull", at = @At("HEAD"), cancellable = true, remap = false)
-    private static void onCull(CallbackInfo ci) {
-        if (SleepBackground.LATEST_LOCK_FRAME) ci.cancel();
-    }
-
     @Inject(method = "setShaderFog", at = @At("HEAD"), cancellable = true, expect = 0, require = 0, remap = false)
     private static void onFogDensity(CallbackInfo ci) {
         if (SleepBackground.LATEST_LOCK_FRAME) ci.cancel();
